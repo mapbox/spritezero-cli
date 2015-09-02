@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+var spritezero = require('spritezero');
+var fs = require('fs');
+var path = require('path');
+var argv = require('minimist')(process.argv.slice(2), {
+  boolean: 'retina'
+});
+
+function filepaths (dir) {
+  return fs.readdirSync(dir)
+    .map(function (d) {
+      return path.join(dir, d);
+    });
+}
+
+if (argv._.length < 2) {
+  throw new Error('Usage: spritezero outname inputdir');
+}
+
+var ratio = 1;
+
+if (argv.retina) {
+  ratio = 2;
+} else if (argv.ratio) {
+  ratio = parseFloat(argv.ratio);
+}
+
+var outfile = argv._[0];
+var input = argv._[1];
+
+var buffers = filepaths(input).map(function (file) {
+  return {
+    svg: fs.readFileSync(file),
+    id: path.basename(file).replace('.svg', '')
+  };
+}).sort(function (a, b) {
+  return b.id < a.id;
+});
+
+spritezero.generateImage(spritezero.generateLayout(buffers, ratio),
+  function (err, image) {
+  if (err) throw err;
+  fs.writeFileSync(outfile + '.png', image);
+  fs.writeFileSync(outfile + '.json',
+    JSON.stringify(spritezero.generateLayout(buffers, ratio, true), null, 2), 'utf8');
+});
