@@ -1,5 +1,7 @@
 # spritezero-cli
 
+[![build status](https://secure.travis-ci.org/mapbox/spritezero-cli.png)](http://travis-ci.org/mapbox/spritezero-cli)
+
 A command-line interface to [spritezero](https://github.com/mapbox/spritezero).
 
 ## Installation
