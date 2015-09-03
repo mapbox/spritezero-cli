@@ -2,9 +2,10 @@
 
 var spritezero = require('spritezero');
 var fs = require('fs');
+var multiline = require('multiline');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2), {
-  boolean: 'retina'
+  boolean: ['retina', 'h', 'help']
 });
 
 function filepaths (dir) {
@@ -14,8 +15,31 @@ function filepaths (dir) {
     });
 }
 
+function showHelp () {
+  console.log(multiline(function () {
+  /*
+  spritezero
+
+  Generate sprite sheets for maps and the web using SVG files as input
+
+  Usage
+  pageres <output> <inputdir>
+
+  Example
+  pageres maki maki/
+  */}));
+}
+
+if (argv.h || argv.help) {
+  showHelp();
+  /* istanbul ignore next */
+  process.exit();
+}
+
 if (argv._.length < 2) {
-  throw new Error('Usage: spritezero outname inputdir');
+  showHelp();
+  /* istanbul ignore next */
+  process.exit(1);
 }
 
 var ratio = 1;

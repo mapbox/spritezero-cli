@@ -11,6 +11,15 @@ test('needs 2 arguments', function(t) {
   });
 });
 
+test('provides help', function(t) {
+  var spritezero = spawn('node', [
+    './bin/spritezero', '-h']);
+  spritezero.on('close', function (code) {
+    t.equal(code, 8, 'closes early');
+    t.end();
+  });
+});
+
 test('generate 1x sprites', function(t) {
   var spritezero = spawn('node', [
     './bin/spritezero',

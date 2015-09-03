@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "minimist": "^1.2.0",
+    "multiline": "^1.0.2",
     "spritezero": "^2.2.1"
   },
   "devDependencies": {
