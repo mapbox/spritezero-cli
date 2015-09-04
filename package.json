@@ -4,7 +4,7 @@
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard bin/spritezero && tap --coverage test/test.js"
+    "test": "semistandard bin/spritezero && tap test/test.js"
   },
   "bin": {
     "spritezero": "bin/spritezero"
