@@ -2,6 +2,7 @@
 
 var spritezero = require('spritezero');
 var fs = require('fs');
+var queue = require('queue-async');
 var multiline = require('multiline');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2), {
@@ -30,13 +31,7 @@ function showHelp () {
   */}));
 }
 
-if (argv.h || argv.help) {
-  showHelp();
-  /* istanbul ignore next */
-  process.exit();
-}
-
-if (argv._.length < 2) {
+if (argv.h || argv.help || argv._.length < 2) {
   showHelp();
   /* istanbul ignore next */
   process.exit(1);
@@ -53,19 +48,42 @@ if (argv.retina) {
 var outfile = argv._[0];
 var input = argv._[1];
 
-var buffers = filepaths(input).map(function (file) {
-  return {
-    svg: fs.readFileSync(file),
-    id: path.basename(file).replace('.svg', '')
-  };
-}).sort(function (a, b) {
+function loadFile (file, callback) {
+  fs.readFile(file, function (err, res) {
+    return callback(err, {
+      svg: res,
+      id: path.basename(file).replace('.svg', '')
+    });
+  });
+}
+
+function sortById (a, b) {
   return b.id < a.id;
+}
+
+var q = queue(16);
+
+filepaths(input).forEach(function (file) {
+  q.defer(loadFile, file);
 });
 
-spritezero.generateImage(spritezero.generateLayout(buffers, ratio),
-  function (err, image) {
+q.awaitAll(function (err, buffers) {
   if (err) throw err;
-  fs.writeFileSync(outfile + '.png', image);
-  fs.writeFileSync(outfile + '.json',
-    JSON.stringify(spritezero.generateLayout(buffers, ratio, true), null, 2), 'utf8');
+  buffers.sort(sortById);
+  spritezero.generateLayout(buffers, ratio, true, function (err, formattedLayout) {
+    if (err) throw err;
+    fs.writeFile(outfile + '.json', JSON.stringify(formattedLayout, null, 2),
+      'utf8', function (err) {
+        if (err) throw err;
+      });
+  });
+  spritezero.generateLayout(buffers, ratio, false, function (err, layout) {
+    if (err) throw err;
+    spritezero.generateImage(layout, function (err, image) {
+      if (err) throw err;
+      fs.writeFile(outfile + '.png', image, function (err) {
+        if (err) throw err;
+      });
+    });
+  });
 });

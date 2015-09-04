@@ -20,7 +20,8 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "multiline": "^1.0.2",
-    "spritezero": "^2.2.1"
+    "queue-async": "^1.0.7",
+    "spritezero": "^3.0.0"
   },
   "devDependencies": {
     "semistandard": "^7.0.2",
