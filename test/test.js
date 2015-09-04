@@ -6,7 +6,7 @@ test('needs 2 arguments', function(t) {
   var spritezero = spawn('node', [
     './bin/spritezero']);
   spritezero.on('close', function (code) {
-    t.equal(code, 8, 'closes early');
+    t.ok(code > 0, 'closes early');
     t.end();
   });
 });
@@ -15,7 +15,7 @@ test('provides help', function(t) {
   var spritezero = spawn('node', [
     './bin/spritezero', '-h']);
   spritezero.on('close', function (code) {
-    t.equal(code, 8, 'closes early');
+    t.ok(code > 0, 'closes early');
     t.end();
   });
 });
@@ -25,7 +25,11 @@ test('generate 1x sprites', function(t) {
     './bin/spritezero',
     'test/output/maki',
     'test/fixture/input']);
-  spritezero.on('close', function () {
+  spritezero.stderr.on('data', function(err) {
+    t.fail(err.toString());
+  });
+  spritezero.on('close', function (code) {
+    t.equal(code, 0);
     t.deepEqual(
       JSON.parse(fs.readFileSync('test/output/maki.json')),
       JSON.parse(fs.readFileSync('test/fixture/output/maki.json')), 'layout');
@@ -39,7 +43,8 @@ test('generate 2x sprites', function(t) {
     'test/output/maki-r-2',
     'test/fixture/input',
     '--ratio', 2]);
-  spritezero.on('close', function () {
+  spritezero.on('close', function (code) {
+    t.equal(code, 0);
     t.deepEqual(
       JSON.parse(fs.readFileSync('test/output/maki-r-2.json')),
       JSON.parse(fs.readFileSync('test/fixture/output/maki-r-2.json')), 'layout');
@@ -53,7 +58,8 @@ test('generate --retina sprites', function(t) {
     'test/output/maki-retina',
     'test/fixture/input',
     '--retina']);
-  spritezero.on('close', function () {
+  spritezero.on('close', function (code) {
+    t.equal(code, 0);
     t.deepEqual(
       JSON.parse(fs.readFileSync('test/output/maki-retina.json')),
       JSON.parse(fs.readFileSync('test/fixture/output/maki-r-2.json')), 'layout');
