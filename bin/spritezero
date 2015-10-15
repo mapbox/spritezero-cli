@@ -11,6 +11,9 @@ var argv = require('minimist')(process.argv.slice(2), {
 
 function filepaths (dir) {
   return fs.readdirSync(dir)
+    .filter(function (d) {
+      return !d.match(/^\./);
+    })
     .map(function (d) {
       return path.join(dir, d);
     });
@@ -31,7 +34,7 @@ function showHelp () {
   */}));
 }
 
-if (argv.h || argv.help || argv._.length < 2) {
+if (argv.help || argv._.length < 2) {
   showHelp();
   /* istanbul ignore next */
   process.exit(1);
