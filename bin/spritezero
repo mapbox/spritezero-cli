@@ -8,6 +8,7 @@ var path = require('path');
 var argv = require('minimist')(process.argv.slice(2), {
   boolean: ['retina', 'h', 'help']
 });
+var stringify = require('json-stable-stringify');
 
 function filepaths (dir) {
   return fs.readdirSync(dir)
@@ -75,7 +76,7 @@ q.awaitAll(function (err, buffers) {
   buffers.sort(sortById);
   spritezero.generateLayout(buffers, ratio, true, function (err, formattedLayout) {
     if (err) throw err;
-    fs.writeFile(outfile + '.json', JSON.stringify(formattedLayout, null, 2),
+    fs.writeFile(outfile + '.json', stringify(formattedLayout, {space: '  '}),
       'utf8', function (err) {
         if (err) throw err;
       });
