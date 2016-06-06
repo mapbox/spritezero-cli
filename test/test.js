@@ -66,3 +66,19 @@ test('generate --retina sprites', function(t) {
     t.end();
   });
 });
+
+test('generate --unique sprites', function(t) {
+  var spritezero = spawn('node', [
+    './bin/spritezero',
+    'test/output/maki-unique',
+    'test/fixture/input',
+    '--unique']);
+  spritezero.on('close', function (code) {
+    t.equal(code, 0);
+    t.deepEqual(
+      JSON.parse(fs.readFileSync('test/output/maki-unique.json')),
+      JSON.parse(fs.readFileSync('test/fixture/output/maki-unique.json')), 'layout');
+    t.end();
+  });
+});
+
