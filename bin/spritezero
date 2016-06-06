@@ -48,7 +48,8 @@ if (argv.retina) {
   ratio = 2;
 } else if (argv.ratio) {
   ratio = parseFloat(argv.ratio);
-} else if (argv.unique) {
+}
+if (argv.unique) {
   unique = true;
 }
 
