@@ -16,5 +16,5 @@ A command-line interface to [spritezero](https://github.com/mapbox/spritezero).
       --ratio=[n]   pixel ratio
       --unique      map identical images to multiple names
 
-Spritezero reads directory full of SVG files and generates a JSON
+Spritezero reads an input directory containing SVG files and generates a JSON
 layout file and PNG spritesheet.
