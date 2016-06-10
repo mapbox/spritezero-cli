@@ -5,8 +5,9 @@ var fs = require('fs');
 var queue = require('queue-async');
 var multiline = require('multiline');
 var path = require('path');
+var stringify = require('json-stable-stringify');
 var argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['retina', 'h', 'help']
+  boolean: ['retina', 'unique', 'h', 'help']
 });
 
 function filepaths (dir) {
@@ -41,11 +42,15 @@ if (argv.help || argv._.length < 2) {
 }
 
 var ratio = 1;
+var unique = false;
 
 if (argv.retina) {
   ratio = 2;
 } else if (argv.ratio) {
   ratio = parseFloat(argv.ratio);
+}
+if (argv.unique) {
+  unique = true;
 }
 
 var outfile = argv._[0];
@@ -72,15 +77,18 @@ filepaths(input).forEach(function (file) {
 
 q.awaitAll(function (err, buffers) {
   if (err) throw err;
+
   buffers.sort(sortById);
-  spritezero.generateLayout(buffers, ratio, true, function (err, formattedLayout) {
+
+  function saveLayout (err, formattedLayout) {
     if (err) throw err;
-    fs.writeFile(outfile + '.json', JSON.stringify(formattedLayout, null, 2),
+    fs.writeFile(outfile + '.json', stringify(formattedLayout, {space: '  '}),
       'utf8', function (err) {
         if (err) throw err;
       });
-  });
-  spritezero.generateLayout(buffers, ratio, false, function (err, layout) {
+  }
+
+  function saveImage (err, layout) {
     if (err) throw err;
     spritezero.generateImage(layout, function (err, image) {
       if (err) throw err;
@@ -88,5 +96,9 @@ q.awaitAll(function (err, buffers) {
         if (err) throw err;
       });
     });
-  });
+  }
+
+  var genLayout = unique ? spritezero.generateLayoutUnique : spritezero.generateLayout;
+  genLayout(buffers, ratio, true, saveLayout);
+  genLayout(buffers, ratio, false, saveImage);
 });
