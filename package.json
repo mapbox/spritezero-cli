@@ -20,9 +20,9 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "multiline": "^1.0.2",
-    "queue-async": "^1.0.7",
+    "queue-async": "^1.2.1",
     "json-stable-stringify": "^1.0.1",
-    "spritezero": "^3.6.0"
+    "spritezero": "^3.7.0"
   },
   "devDependencies": {
     "semistandard": "^8.0.0",

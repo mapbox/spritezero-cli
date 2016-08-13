@@ -32,7 +32,7 @@ function showHelp () {
 
   Example
   pageres maki maki/
-  */}));
+  */ }));
 }
 
 if (argv.help || argv._.length < 2) {
