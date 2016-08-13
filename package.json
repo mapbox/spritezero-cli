@@ -1,6 +1,6 @@
 {
   "name": "spritezero-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
   "main": "index.js",
   "scripts": {
