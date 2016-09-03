@@ -25,7 +25,7 @@
     "spritezero": "^3.7.0"
   },
   "devDependencies": {
-    "semistandard": "^8.0.0",
+    "semistandard": "^9.0.0",
     "tap": "^7.0.0"
   }
 }
