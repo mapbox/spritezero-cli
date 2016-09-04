@@ -2,6 +2,10 @@
   "name": "spritezero-cli",
   "version": "1.1.1",
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mapbox/spritezero-cli.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "semistandard bin/spritezero && tap --coverage test/test.js"
