@@ -5,6 +5,10 @@
 * Update to spritezero 3.8.0
 * Switch spritezero from ^carat to ~tilde dependency
 
+## 1.1.2
+##### 2016-aug-13
+* Retain spritezero 3.7.0 but switch to ~tilde patch dependency
+
 ## 1.1.1
 ##### 2016-aug-13
 * Update to spritezero 3.7.0
