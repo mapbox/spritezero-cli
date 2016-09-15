@@ -1,5 +1,9 @@
 :warning: = breaking change
 
+## 1.1.2
+##### 2016-aug-13
+* Retain spritezero 3.7.0 but switch to tilde ~ patch dependency
+
 ## 1.1.1
 ##### 2016-aug-13
 * Use spritezero 3.7.0

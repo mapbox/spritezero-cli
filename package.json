@@ -1,6 +1,6 @@
 {
   "name": "spritezero-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "index.js",
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
   "author": "Tom MacWright",
