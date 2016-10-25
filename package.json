@@ -5,10 +5,7 @@
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
   "author": "Tom MacWright",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:mapbox/spritezero-cli.git"
-  },
+  "repository": "mapbox/spritezero-cli",
   "bugs": "https://github.com/mapbox/spritezero-cli/issues",
   "bin": {
     "spritezero": "bin/spritezero"
@@ -27,14 +24,14 @@
     "spritezero": "~3.8.0"
   },
   "devDependencies": {
-    "eslint": "~3.8.0",
-    "tap": "~8.0.0"
+    "eslint": "^3.8.0",
+    "tap": "^8.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
     "lint": "eslint bin/spritezero test/",
-    "test": "npm run lint && tap --coverage test/test.js"
+    "test": "npm run lint && tap test/test.js"
   }
 }
