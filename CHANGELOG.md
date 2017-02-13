@@ -1,5 +1,10 @@
 :warning: = breaking change
 
+## 2.0.0
+##### 2017-feb-13
+* Update to spritezero 4.0.0
+* :warning: spritezero-cli now a scoped package under @mapbox namespace
+
 ## 1.2.0
 ##### 2016-sep-15
 * Update to spritezero 3.8.0
@@ -23,4 +28,4 @@
 
 ## 1.0.1
 ##### 2015-sep-04
-* Update to spritezero v3.0.0
+* Update to spritezero 3.0.0
