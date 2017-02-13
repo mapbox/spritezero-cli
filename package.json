@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "eslint": "^3.8.0",
+    "greenkeeper-postpublish": "^1.0.1",
     "tap": "^10.1.0"
   },
   "engines": {
@@ -32,6 +33,7 @@
   },
   "scripts": {
     "lint": "eslint bin/spritezero test/",
-    "test": "npm run lint && tap test/test.js"
+    "test": "npm run lint && tap test/test.js",
+    "postpublish": "greenkeeper-postpublish"
   }
 }
