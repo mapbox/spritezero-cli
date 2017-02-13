@@ -1,5 +1,5 @@
 {
-  "name": "spritezero-cli",
+  "name": "@mapbox/spritezero-cli",
   "version": "1.2.0",
   "main": "index.js",
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
