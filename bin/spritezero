@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var spritezero = require('spritezero');
+var spritezero = require('@mapbox/spritezero');
 var fs = require('fs');
 var queue = require('queue-async');
 var multiline = require('multiline');

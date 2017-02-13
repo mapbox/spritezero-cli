@@ -21,7 +21,7 @@
     "multiline": "^1.0.2",
     "queue-async": "^1.2.1",
     "json-stable-stringify": "^1.0.1",
-    "spritezero": "~3.8.0"
+    "@mapbox/spritezero": "~4.0.0"
   },
   "devDependencies": {
     "eslint": "^3.8.0",
