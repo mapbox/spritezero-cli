@@ -24,7 +24,7 @@
     "@mapbox/spritezero": "~4.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.8.0",
+    "eslint": "^3.18.0",
     "greenkeeper-postpublish": "^1.0.1",
     "tap": "^10.1.0"
   },
