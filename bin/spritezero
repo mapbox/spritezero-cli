@@ -99,6 +99,6 @@ q.awaitAll(function (err, buffers) {
     }
 
     var genLayout = unique ? spritezero.generateLayoutUnique : spritezero.generateLayout;
-    genLayout(buffers, ratio, true, saveLayout);
-    genLayout(buffers, ratio, false, saveImage);
+    genLayout({ imgs: buffers, pixelRatio: ratio, format: true }, saveLayout);
+    genLayout({ imgs: buffers, pixelRatio: ratio, format: false }, saveImage);
 });
