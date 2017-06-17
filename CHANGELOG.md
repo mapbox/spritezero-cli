@@ -1,5 +1,9 @@
 :warning: = breaking change
 
+## 2.1.0
+##### 2017-jun-17
+* Update to spritezero 5.0.0
+
 ## 2.0.0
 ##### 2017-feb-13
 * Update to spritezero 4.0.0
