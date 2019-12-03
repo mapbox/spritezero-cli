@@ -2,7 +2,7 @@
 
 var spritezero = require('@mapbox/spritezero');
 var fs = require('fs');
-var queue = require('queue-async');
+var queue = require('d3-queue');
 var multiline = require('multiline');
 var path = require('path');
 var stringify = require('json-stable-stringify');
