@@ -2,7 +2,7 @@
 
 var spritezero = require('@mapbox/spritezero');
 var fs = require('fs');
-var queue = require('d3-queue');
+var d3 = require('d3-queue');
 var multiline = require('multiline');
 var path = require('path');
 var stringify = require('json-stable-stringify');
@@ -70,7 +70,7 @@ function sortById (a, b) {
     return b.id < a.id;
 }
 
-var q = queue(16);
+var q = d3.queue(16);
 
 filepaths(input).forEach(function (file) {
     q.defer(loadFile, file);
