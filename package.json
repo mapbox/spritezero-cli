@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/spritezero-cli",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "main": "index.js",
   "description": "a command-line interface for spritezero generation of raster sprites from SVG input",
   "author": "Tom MacWright",
@@ -19,16 +19,15 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "multiline": "^1.0.2",
-    "queue-async": "^1.2.1",
-    "json-stable-stringify": "^1.0.1",
-    "@mapbox/spritezero": "~5.0.0"
+    "d3-queue": "^3.0.0",
+    "@mapbox/spritezero": "~7.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "tap": "^10.1.0"
+    "eslint": "^6.8.0",
+    "tap": "^14.10.8"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "lint": "eslint bin/spritezero test/",
