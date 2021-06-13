@@ -10,15 +10,23 @@ var argv = require('minimist')(process.argv.slice(2), {
     boolean: ['retina', 'unique', 'h', 'help']
 });
 
-function filepaths (dir) {
-    return fs.readdirSync(dir)
-        .filter(function (d) {
-            return !d.match(/^\./);
-        })
-        .map(function (d) {
-            return path.join(dir, d);
-        });
+function filepaths(dir) {
+    var results = [];
+    var list = fs.readdirSync(dir);
+    list.forEach(function(file) {
+        file = dir + '/' + file;
+        var stat = fs.statSync(file);
+        if (stat && stat.isDirectory()) {
+            /* Recurse into a subdirectory */
+            results = results.concat(filepaths(file));
+        } else {
+            /* Is a file */
+            results.push(file);
+        }
+    });
+    return results;
 }
+
 
 function showHelp () {
   console.log(multiline(function () {
@@ -71,7 +79,6 @@ function sortById (a, b) {
 }
 
 var q = queue(16);
-
 filepaths(input).forEach(function (file) {
     q.defer(loadFile, file);
 });
