@@ -17,18 +17,13 @@
     "vector"
   ],
   "dependencies": {
-    "minimist": "^1.2.0",
-    "multiline": "^1.0.2",
-    "queue-async": "^1.2.1",
-    "json-stable-stringify": "^1.0.1",
-    "@mapbox/spritezero": "~5.0.0"
+    "@mapbox/spritezero": "^8.0.3",
+    "glob": "^10.2.6",
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "tap": "^10.1.0"
-  },
-  "engines": {
-    "node": ">=4.0.0"
+    "eslint": "^4.19.1",
+    "tap": "^10.7.3"
   },
   "scripts": {
     "lint": "eslint bin/spritezero test/",
